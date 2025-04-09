@@ -1,12 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import './App.css';
 import Registro from './paginas/registro';
 
 const BotonRegistro = () => {
-  const navigate = useNavigate();
-
   const handleRegistro = () => {
-    navigate("/registro");
+    window.location.href = "/registro";
   };
 
   return (
@@ -16,13 +13,13 @@ const BotonRegistro = () => {
 
 function App() {
   return (
-    <Router>
+    <div>
       <nav className="navbar">
         <div className="titulo">Sistema de Gestión de Universidades</div>
         <ul className='links'>
-            <li><Link to="/">Inicio</Link></li>
-            <li><Link to="/seleccion-cursos">Cursos</Link></li>
-            <li><Link to="/inscripcion">Inscripcion</Link></li>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/seleccion-cursos">Cursos</a></li>
+            <li><a href="/inscripcion">Inscripcion</a></li>
         </ul>
       </nav>
 
@@ -41,11 +38,9 @@ function App() {
             <BotonRegistro />
           </div>
         </div>
-        <Routes>
-          <Route path="/registro" element={<Registro />} />
-        </Routes>
+        {window.location.pathname === "/registro" && <Registro />}
       </div>
-    </Router>
+    </div>
   );
 }
 
